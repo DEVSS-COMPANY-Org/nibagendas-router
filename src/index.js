@@ -19,14 +19,15 @@ export default {
     if (path.startsWith('/api')) {
       const apiUrl = new URL(request.url);
       apiUrl.hostname = API_HOST;
-      apiUrl.pathname = path.replace('/api', '') || '/';
-      
+      // Mantém o path completo incluindo /api
+      apiUrl.pathname = path;
+
       const apiRequest = new Request(apiUrl.toString(), {
         method: request.method,
         headers: request.headers,
         body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null
       });
-      
+
       return fetch(apiRequest);
     }
 
