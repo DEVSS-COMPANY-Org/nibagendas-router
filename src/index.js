@@ -79,22 +79,140 @@ export default {
 
     // === 404 ===
     return new Response(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>404 - Página não encontrada</title>
-          <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-            h1 { color: #333; }
-            a { color: #0066cc; }
-          </style>
-        </head>
-        <body>
-          <h1>404 - Página não encontrada</h1>
-          <p>A página que você procura não existe.</p>
-          <p><a href="/administracao">Ir para Administração</a></p>
-        </body>
-      </html>
+     <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página não encontrada</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #3b82f6;
+                --primary-hover: #60a5fa;
+                --text-color: #f9fafb;
+                --text-muted: #9ca3af;
+                --bg-color: #111827;
+                --card-bg: #1f2937;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-container svg {
+            width: 120px;
+            height: 120px;
+            color: var(--primary-color);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 1.875rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-container">
+            <!-- SVG Ilustrativo de Fantasma/Erro -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 17v1m3-1v1m3-1v1M9 10h.01M15 10h.01M7.8 15h8.4a2 2 0 002-1.6l1-5a6 6 0 00-4-4.4 6 6 0 00-10.4 0 6 6 0 00-4 4.4l1 5a2 2 0 002 1.6z" />
+            </svg>
+        </div>
+        
+        <h1>Erro 404, Página não encontrada</h1>
+        <p>Ops! A página que você está procurando não existe ou foi movida. Verifique o URL ou volte para a área segura.</p>
+        
+        <a href="/administracao" class="btn">
+            Voltar para Administração
+        </a>
+    </div>
+</body>
+</html>
     `, { 
       status: 404,
       headers: { 'Content-Type': 'text/html' }
